@@ -254,12 +254,13 @@ public class arrayAndString{
 
 
 //1.8 
+    /*
     public boolean isStringRotation(String s1, String s2){
          String s = s1 + s1;
          return isSubString(s,s2);
     }
 
-
+*/
 
 
 
