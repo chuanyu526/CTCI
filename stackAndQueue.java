@@ -8,49 +8,37 @@ public class stackAndQueue{
 
 
 
-
-    public static int evalRPN(String[] tokens) {
-        Stack<String> s = new Stack<String>();
-        s.push(tokens[tokens.length-1]);
-        boolean isTopNum = false;
-        for(int i=tokens.length-1; i>=0; i--){
-            if(tokens[i].equals("/") || tokens[i].equals("+") || tokens[i].equals("-")  || tokens[i].equals("*") ){
-                s.push(tokens[i]);
-                isTopNum = false;
+	//Assume all inputs are valid 
+    public int evalRPN(String[] tokens) {
+ 
+        int returnValue = 0;
+        String operators = "+-*/";
+        Stack<String> stack = new Stack<String>();
+        for(String t : tokens){
+            if(!operators.contains(t)){
+                stack.push(t);
             }else{
-                if(isTopNum){
-                    String second = s.pop(); 
-                    String op = s.pop();
-                    String first = tokens[i];
-                    s.push("" + calculate(first, second, op));
-                }else{
-                    s.push(tokens[i]);
+                int a = Integer.valueOf(stack.pop());
+                int b = Integer.valueOf(stack.pop());
+                int index = operators.indexOf(t);
+                switch(index){
+                    case 0:
+                        stack.push(String.valueOf(a+b));
+                        break;
+                    case 1:
+                        stack.push(String.valueOf(b-a));
+                        break;
+                    case 2:
+                        stack.push(String.valueOf(a*b));
+                        break;
+                    case 3:
+                        stack.push(String.valueOf(b/a));
+                        break;
                 }
-                isTopNum = true;
-            }   
-        }
-        return Integer.parseInt(s.pop());
-        
-    }
-    
-    static int calculate(String a, String b, String op){
-        if(op.equals("/")){
-            return  Integer.parseInt(a) / Integer.parseInt(b);
-        }
-        
-        else if(op.equals("+")){
-            return Integer.parseInt(a) + Integer.parseInt(b);
-        }
-        
-        else if(op.equals("-")){
-            return Integer.parseInt(a) - Integer.parseInt(b);
-        }
-
-        else{
-            return Integer.parseInt(a) * Integer.parseInt(b);
-        }
-        
-        
+            }
+        } 
+        returnValue = Integer.valueOf(stack.pop());
+        return returnValue; 
     }
     
 
@@ -86,7 +74,9 @@ public class stackAndQueue{
 
 	public static void main(String [] args){
       String[] a = {"0", "3", "/"};
+      String[] b = {"2","1","+","3","*"};
       System.out.print(evalRPN(a));
+      System.out.print(evalRPN(b));
 
  		//System.out.print("HI");
 	}
