@@ -3,11 +3,6 @@ import java.util.*;
 public class stackAndQueue{
 
 
-//3.5//////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
-
 	//Assume all inputs are valid 
     public int evalRPN(String[] tokens) {
  
@@ -40,6 +35,7 @@ public class stackAndQueue{
         returnValue = Integer.valueOf(stack.pop());
         return returnValue; 
     }
+    
     
 
 
