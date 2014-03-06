@@ -140,6 +140,30 @@ public class Tree{
 
 
 
+    public static void setNextRight(Node root){
+    	Queue<Node> q = new LinkedList<Node>();
+    	q.add(root);
+    	while(q.size() != 0 ){
+    		    Node last = q.poll();
+    		    if(q.size()!=0){
+    		    	Node current =q.peek();
+    		    	last.next = current;
+    		    	last = current;  
+    		    }else{
+    		    	last.next = null; 
+    		    }
+    		//System.out.print(n.data);
+    		if( n.leftChild != null ){
+    			q.add(n.leftChild);
+    		}
+    		if( n.rightChild != null ){
+    			q.add(n.rightChild);
+    		}
+    	}
+    }
+
+	
+
     public static void levelOrder(Node root){
     	Queue<Node> q = new LinkedList<Node>();
     	q.add(root);
@@ -155,7 +179,7 @@ public class Tree{
     	}
     }
 
-	
+
 
 
 
