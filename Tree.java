@@ -140,27 +140,31 @@ public class Tree{
 
 
 
-    public static void setNextRight(Node root){
-    	Queue<Node> q = new LinkedList<Node>();
-    	q.add(root);
-    	while(q.size() != 0 ){
-    		    Node last = q.poll();
-    		    if(q.size()!=0){
-    		    	Node current =q.peek();
-    		    	last.next = current;
-    		    	last = current;  
-    		    }else{
-    		    	last.next = null; 
-    		    }
-    		//System.out.print(n.data);
-    		if( n.leftChild != null ){
-    			q.add(n.leftChild);
-    		}
-    		if( n.rightChild != null ){
-    			q.add(n.rightChild);
-    		}
-    	}
+//point every node to its next right sibling assuming the every node has two children and 
+    public void connect(Node root) {
+
+        Node leftWall = root;
+        if(root!=null){
+            root.next = null;
+        }
+        while (leftWall != null) {
+
+            Node across = leftWall;
+            while (across != null) {
+                if (across.left != null) {
+                    across.left.next = across.right;
+                }
+
+                if (across.right != null && across.next != null) {
+                    across.right.next = across.next.left;
+                }
+
+                across = across.next;
+            }
+            leftWall = leftWall.left;
+        }
     }
+
 
 	
 
@@ -188,6 +192,7 @@ class Node {
     int data;
     Node leftChild;
     Node rightChild;
+    Node next;
     Node(int data){   
         this.data = data;
     }
