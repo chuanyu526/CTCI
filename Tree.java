@@ -140,7 +140,10 @@ public class Tree{
 
 
 
-//point every node to its next right sibling assuming the every node has two children and 
+/*point every node to its next right sibling 
+	1.only use constant extra space.
+    2. assuming it is a perfect binary tree (ie, all leaves are at the same level, and every parent has two children).
+*/
     public void connect(Node root) {
 
         Node leftWall = root;
