@@ -263,22 +263,35 @@ public class arrayAndString{
 */
 
 
+    public static String reverseWords(String s) {
+        ArrayList<String> list = new ArrayList<String>();
+        StringBuffer result = new StringBuffer();
+        StringBuffer holder = new StringBuffer();
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        for(int i=0; i<s.length(); i++){
+            if(s.charAt(i)==' ' && !holder.toString().isEmpty()){
+                list.add(holder.toString());
+                holder = new StringBuffer();
+            }else if(s.charAt(i) != ' '){
+                holder.append(s.charAt(i));
+            }
+        }
+        
+        if(!holder.toString().isEmpty()){
+            list.add(holder.toString());
+        }
+        
+        for(int i=list.size()-1; i>=0; i--){
+            if(i>0){
+                result.append(list.get(i));
+                result.append(' ');
+            }else{
+                result.append(list.get(i));
+            }
+        }
+        return result.toString();
+        
+    }
 
 
 
@@ -291,13 +304,6 @@ public class arrayAndString{
       		System.out.println();
    		}
     }
-
-
-
-
-
-
-
 
 
 
