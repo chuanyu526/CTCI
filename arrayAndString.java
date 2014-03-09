@@ -295,6 +295,45 @@ public class arrayAndString{
 
 
 
+
+
+/*
+Given an array of non-negative integers, you are initially positioned at the first index of the array.
+
+Each element in the array represents your maximum jump length at that position.
+
+Determine if you are able to reach the last index.
+
+For example:
+A = [2,3,1,1,4], return true.
+
+A = [3,2,1,0,4], return false.
+*/
+
+
+    public boolean canJump(int[] A) {
+        int minRequired=1; 
+        if(A.length == 1){
+            return true;
+        }
+        for(int i=A.length - 2; i>=0; i--){
+            if(A[i]>=minRequired){
+               minRequired = 0;
+            }
+            minRequired++; 
+        }
+        if(A[0] < minRequired){
+            return false;
+        }
+        return true; 
+    }
+
+
+
+
+
+
+
  	public void printGrid(int[][] a){
 
    		for(int i = 0; i < a.length; i++){
